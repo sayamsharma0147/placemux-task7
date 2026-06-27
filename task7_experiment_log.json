@@ -1,0 +1,106 @@
+{
+  "task": "Task 7 \u2014 Baseline Target Feature Engineering",
+  "timestamp": "2026-06-27T07:24:58.066800",
+  "dataset": {
+    "rows": 4799,
+    "files": 6,
+    "excluded": "DevOps (malformed header)"
+  },
+  "target": {
+    "column": "difficulty_level",
+    "binarize_at": 42.0,
+    "class_0_easy": 2334,
+    "class_1_hard": 2465
+  },
+  "features_engineered": [
+    "q_len",
+    "q_word_count",
+    "avg_opt_len",
+    "max_opt_len",
+    "opt_len_range",
+    "total_opt_len",
+    "domain_avg_difficulty",
+    "topic_avg_difficulty",
+    "domain_enc",
+    "topic_enc",
+    "q_to_avg_opt_ratio"
+  ],
+  "leakage_check": {
+    "safe": [
+      "q_len",
+      "q_word_count",
+      "avg_opt_len",
+      "max_opt_len",
+      "opt_len_range",
+      "total_opt_len",
+      "domain_enc",
+      "topic_enc",
+      "q_to_avg_opt_ratio"
+    ],
+    "fixed": {
+      "domain_avg_difficulty": "recomputed from train only",
+      "topic_avg_difficulty": "recomputed from train only"
+    },
+    "excluded": [
+      "difficulty_level (target)",
+      "question_id (identifier)",
+      "correct_answer (no signal)"
+    ]
+  },
+  "split": {
+    "train": 3359,
+    "val": 720,
+    "test": 720,
+    "strategy": "stratified, random_state=42"
+  },
+  "importance_ranking": {
+    "q_to_avg_opt_ratio": 0.1585,
+    "q_len": 0.1388,
+    "topic_avg_difficulty": 0.1169,
+    "max_opt_len": 0.1061,
+    "avg_opt_len": 0.1016,
+    "opt_len_range": 0.0993,
+    "total_opt_len": 0.0987,
+    "q_word_count": 0.0903,
+    "topic_enc": 0.0557,
+    "domain_avg_difficulty": 0.0186,
+    "domain_enc": 0.0155
+  },
+  "pruning": {
+    "threshold": 0.015,
+    "pruned": [],
+    "kept": [
+      "q_to_avg_opt_ratio",
+      "q_len",
+      "topic_avg_difficulty",
+      "max_opt_len",
+      "avg_opt_len",
+      "opt_len_range",
+      "total_opt_len",
+      "q_word_count",
+      "topic_enc",
+      "domain_avg_difficulty",
+      "domain_enc"
+    ]
+  },
+  "results": {
+    "all_features_val_f1": 0.6478,
+    "pruned_features_val_f1": 0.6578,
+    "delta_f1": 0.0099,
+    "test_f1": 0.6492,
+    "test_accuracy": 0.6472
+  },
+  "locked_baseline_features": [
+    "q_to_avg_opt_ratio",
+    "q_len",
+    "topic_avg_difficulty",
+    "max_opt_len",
+    "avg_opt_len",
+    "opt_len_range",
+    "total_opt_len",
+    "q_word_count",
+    "topic_enc",
+    "domain_avg_difficulty",
+    "domain_enc"
+  ]
+}
